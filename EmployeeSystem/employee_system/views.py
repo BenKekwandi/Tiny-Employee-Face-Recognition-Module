@@ -4,7 +4,7 @@ from .models import PictureModel
 from django.conf import settings
 import base64
 import os
-from django.http import HttpResponse
+from django.http import HttpResponse,JsonResponse
 import shutil
 import face_recognition
 
@@ -103,5 +103,13 @@ def my_view(request):
     folder_path = '/path/to/folder'
     delete_files_in_folder(folder_path)
     return HttpResponse('Files deleted successfully')
+
+def employee_json(request):
+    employees=EmployeeModel.objects.all().values()
+    data=list(employees)
+    for dt in data:
+       dt['profile_picture'] = '<img src="{% static \'' + str(dt['profile_picture']) + '\' %}">'
+
+    return JsonResponse(data,safe=False)
 
 

@@ -2,6 +2,95 @@
 
 {% block content %}
 
-<h1>Employee list</h1>
+
+<div class="pageholder">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card border border-primary bg bg-light">
+                <div class="card-header" style="background-color: #002D62">
+                    <h1 class="text-white" style="text-align:center;color:white">EMPLOYEES</h1>
+                </div>
+                <div class="card-body" style="padding:40px">
+
+                    <div class="row" style="margin: 20px">
+                        <button
+                        style="margin-bottom:20px"
+                        onclick="window.location.href='create-employee'"
+                        class="btn btn-primary"
+                        >
+                        New Employee
+                        </button>
+                    
+                      <button
+                      onclick="window.location.href='recognition'"
+                      class="btn btn-primary"
+                      >
+                      Face Recognition
+                      </button>
+                  </div>
+                    <table id="contract" class="display" cellspacing="0" width="100%">
+                        <thead>
+                            <tr >
+                                <th>Id</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Profile Picture</th>
+                            </tr>
+                        </tr>
+                        </thead>
+                        <tfoot>
+                            <tr >
+                                <th>Id</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Profile Picture</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            <tr>
+                    
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        $.noConflict();
+        var dataSet = [];
+        {
+        }
+        $.ajax({
+            url: 'employee-json',
+            dataType: "json",
+            error: function (request) {
+                alert("Error " + request);
+            },
+            success: function (array) {
+                for (var i = 0; i < array.length; i++) {
+                    dataSet.push([array[i].id
+                        , array[i].first_name
+                        , array[i].last_name
+                        , array[i].profile_picture
+                    ])
+                }
+                var table = $('#contract').DataTable({
+                    data: dataSet,
+                    responsive:true,
+                    scrollX:200
+
+                });
+            }
+        }
+        )
+    })
+</script>
 
 {% endblock %}

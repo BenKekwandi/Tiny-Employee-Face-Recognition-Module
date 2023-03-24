@@ -1,34 +1,79 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-<div id="form-div">
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        <div>
-            <label for="first_name" class="form-label"> First Name</label>
-            <input type="text" class="form-control" name="first_name" id="first_name" required>
+
+
+<div class="pageholder">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card border border-primary bg bg-light">
+                <div class="card-header" style="background-color: #002D62">
+                    <h1 class="text-white" style="text-align:center;color:white">CREATE A NEW EMPLOYEE</h1>
+                </div>
+                <div class="card-body" style="padding:40px">
+
+                    <div class="row" style="margin: 20px">
+                        <button
+                        style="margin-bottom:20px"
+                        onclick="window.location.href='create-employee'"
+                        class="btn btn-primary"
+                        >
+                        New Employee
+                        </button>
+                        <button
+                        style="margin-bottom:20px"
+                        onclick="window.location.href='employee-list'"
+                        class="btn btn-primary"
+                        >
+                        All employees
+                        </button>
+                    
+                      <button
+                      onclick="window.location.href='recognition'"
+                      class="btn btn-primary"
+                      >
+                      Face Recognition
+                      </button>
+                  </div>
+
+                    <div id="form-div">
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div>
+                                <label for="first_name" class="form-label"> First Name</label>
+                                <input type="text" class="form-control" name="first_name" id="first_name" required>
+                            </div>
+                            <div>
+                                <label for="last_name" class="form-label"> Last Name</label>
+                                <input type="text" class="form-control" name="last_name" id="last_name" required>
+                            </div>
+                         
+                            <div>
+                                <label for="picture_1" class="form-label">First Picture</label>
+                                <input type="file" class="form-control" name="picture_1" id="picture_1" required>
+                            </div>
+                            <div>
+                                <label for="picture_2" class="form-label">Second Picture</label>
+                                <input type="file" class="form-control" name="picture_2" id="picture_2" required>
+                            </div>
+                            <div style="padding:20px">
+                               <button type="submit" class="btn btn-outline-primary">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    
+
+                </div>
+            </div>
         </div>
-        <div>
-            <label for="last_name" class="form-label"> Last Name</label>
-            <input type="text" class="form-control" name="last_name" id="last_name" required>
-        </div>
-     
-        <div>
-            <label for="picture_1" class="form-label">First Picture</label>
-            <input type="file" class="form-control" name="picture_1" id="picture_1" required>
-        </div>
-        <div>
-            <label for="picture_2" class="form-label">Second Picture</label>
-            <input type="file" class="form-control" name="picture_2" id="picture_2" required>
-        </div>
-        <div style="padding:20px">
-           <button type="submit" class="btn btn-outline-primary">Submit</button>
-        </div>
-    </form>
+    </div>
 </div>
+
 <style>
     #form-div{
-        position: fixed;
+        position:flex;
         top: 20%;
         left:40%;
         border:1px solid #0000FF;
@@ -36,5 +81,6 @@
         padding:30px
     }
 </style>
+
 
 {% endblock %}
